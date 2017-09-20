@@ -2,17 +2,23 @@ package com.template;
 
 import android.app.Application;
 
-import com.lynx.core.RuntimeManager;
+import com.lynx.content.LynxApplication;
+import com.lynx.content.LynxApplicationDelegate;
+import com.lynx.content.info.App;
 
-/**
- * Created by yanxing on 16/9/29.
- */
 
-public class MainApplication extends Application{
+public class MainApplication extends Application implements LynxApplication {
+    private LynxApplicationDelegate mDelegate;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        RuntimeManager.prepare(MainApplication.this);
+        mDelegate = new LynxApplicationDelegate(this);
+        mDelegate.onCreate();
+    }
+
+    @Override
+    public App getAppInfo() {
+        return mDelegate.getAppInfo();
     }
 }
