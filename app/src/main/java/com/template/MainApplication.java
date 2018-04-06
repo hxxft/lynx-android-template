@@ -2,9 +2,12 @@ package com.template;
 
 import android.app.Application;
 
+import com.lynx.LynxExtModule;
 import com.lynx.content.LynxApplication;
 import com.lynx.content.LynxApplicationDelegate;
 import com.lynx.content.info.App;
+
+import java.util.Arrays;
 
 
 public class MainApplication extends Application implements LynxApplication {
@@ -14,6 +17,7 @@ public class MainApplication extends Application implements LynxApplication {
     public void onCreate() {
         super.onCreate();
         mDelegate = new LynxApplicationDelegate(this);
+        mDelegate.setExtModules(Arrays.asList(new LynxExtModule()));
         mDelegate.onCreate();
     }
 
